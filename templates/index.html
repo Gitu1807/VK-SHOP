@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+ <!--Main section Start -->
+ <div class="row mt 3">
+    <div class="col-md-3 p-3">
+        <h5>Filter by Category</h5><hr>
+        <a href="/product">All</a><br>
+        <a href="/catfilter/1">Choclate</a><br>
+        <a href="/catfilter/2">Farsans</a><br>  
+        <a href="/catfilter/3">Rice</a><br>  
+        <br>
+        <h5>Filter By Price</h5><hr>
+        <form method="get" action="/pricefilter">
+          <div class="mb-2">
+            <label for="input1" class="form-label">Min:</label>
+            <input type="text" class="form control" id="input1" name="min">
+          </div>
+          <div class="mb-2">
+            <label for="input1" class="form-label">Max:</label>
+            <input type="text" class="form control" id="input2" name="max">
+          </div>
+          <div class="mb-2">
+            <input type="submit" value="Filter" class="btn btn-success">
+          </div>
+          
+        </form>
+        <br>
+          <h5>Sort By Price</h5><hr>
+          <a href="/sort/0">Low to High</a><br>
+          <a href="/sort/1">High to Low</a><br>
+
+      </div><!--sidebar end-->
+      <div class="col-md-9 p-3">
+      {% if errmsg %}
+      <div class="alert alert-danger">
+        {{errmsg}}
+      </div>
+
+      {% endif %}
+      <div class="row">
+          {% for x in data %}
+          <div class="col-md-3 mb-3">
+            <div class="card" style="width: 100%;">
+              <img src="{{x.pimage.url}}" class="card-img-top" alt="..." width="100" height="150px">
+              <div class="card-body">
+                <h5 class="card-title">{{x.name}}</h5>
+                <p class="card-text">{{x.pdetail}}</p>
+                <p class="card-text">{{x.price}}</p>
+                
+                <a href="/productdetail/{{x.id}}" class="btn btn-primary">See Detail</a>
+              </div>
+            </div>
+          </div>  <!--Product 1-->
+          {% endfor %}
+          
+        
+  
+
+
+
+
+
+
+        </div> 
+
+      </div><!--productlist end-->   
+
+    </div><!--2nd row end or main section end-->
+{% endblock 'main' %}

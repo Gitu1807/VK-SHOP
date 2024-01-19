@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+<div class="row mt-3">
+    <div class="col-md-9 mx-auto">
+        
+     <div class="row">
+            {% for x in data %}
+            <div class="col-md-5">
+                <img src="{{x.pimage.url}}" class="card-img-top" alt="..." height="200px">
+            </div>
+            <div class="col-md-7">
+                {% if msg %}
+                <div class="alert alert-success">
+                    {{msg}}
+                </div>
+                {% endif %}
+
+                {% if errmsg %}
+                <div class='alert alert-danger'>
+                    {{errmsg}}
+                </div>
+                {% endif %}
+                <br>
+                <p><b>Product Name:</b>{{x.name}}</p>
+                <p><b>Product Detail:</b>{{x.pdetail}}</p>
+                {% if x.cat == 1 %}
+                    <p><b>Product Category:</b>Choclate</p>
+                {% elif x.cat == 2 %}
+                    <p><b>Product Category:</b>Farsans</p>
+                {% else %}
+                    <p><b>Product Category:</b>Rice</p>
+                {% endif %}
+                <p><b>Product Price:</b>{{x.price}}</p>
+                <p>
+                    <a href="/addtocart/{{x.id}}" class="btn btn-primary">Add to Cart</a>
+                    <a href="/viewcart" class="btn btn-primary">View Cart</a>
+                    <a href="/product" class="btn btn-primary">Shop More</a>
+                </p>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div><!--2nd row end or main section end-->
+
+{% endblock 'main' %}
